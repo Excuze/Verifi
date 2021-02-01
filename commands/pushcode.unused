@@ -1,0 +1,21 @@
+const fs = require('fs');
+const Discord = require('discord.js');
+const db = require('quick.db');
+const handler = require('../index.js')
+const client = handler.realclient;
+const verifi = new db.table(`verifi`)
+const Canvas = require('canvas')
+var crypto = require("crypto");
+
+module.exports = {
+  name: 'pushcode',
+  cooldown: 1,
+  description: 'Redeem a gift code!',
+  async execute(msg, args) {
+
+if (msg.author.id !== '386122458362806272') return;
+
+ verifi.push(`verifi.giftcodes`, 'definitely-a-real-gift-code')
+
+
+  }}

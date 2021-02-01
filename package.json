@@ -1,0 +1,20 @@
+{
+  "name": "verifi-bot",
+  "version": "1.7",
+  "description": "Verification bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Excuze-Me#3063",
+  "license": "ISC",
+  "dependencies": {
+    "autocannon": "^5.0.1",
+    "axios": "^0.20.0",
+    "axois": "0.0.1-security",
+    "canvas": "^2.6.1",
+    "dblapi.js": "^2.4.1",
+    "discord.js": "^12.4.1",
+    "quick.db": "^7.1.3"
+  }
+}

@@ -1,0 +1,16 @@
+const fs = require('fs');
+const Discord = require('discord.js');
+const db = require('quick.db');
+const client = new Discord.Client();
+const verifi = new db.table(`verifi`)
+
+module.exports = {
+  name: 'servpull',
+  cooldown: 1,
+  description: 'Pull a list of servers and their IDs and their custom messages.',
+  execute(msg, args) {
+
+	client.guilds.forEach(guild => { msg.channel.send("Name: " + guild.name\n"ID: " + guild.id\n"Custom Message: " + verifi.get(`verifi_message_${guild.id}) } )
+
+  }
+}

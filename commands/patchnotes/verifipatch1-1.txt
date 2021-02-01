@@ -1,0 +1,18 @@
+```PATCH 1.1```
+=============
++ Added the `v!>setmessage` command to allow servers to send a custom message to new players with the verification prompt.
++ Added the `v!>logs` command to allow for customization of what actions trigger log messages.
++ Added the `v!>preview` command so you can see how your custom message looks, or just how the first step looks in general. This preview is not interactive, and thus you can't preview the second step.
+By default, all of the following are enabled:
+- Logs on a player join
+- Logs on a player successfully verifying
+- Logs on a player failing and being kicked
+- Logs on a player failing and not being kicked because of your settings
+- Logs when a bot you add is automatically verified (Bots can't go through verification)
+NOTE: You can't disable the log when people verify. If you don't want that, just turn off logs entirely with `v!>setlogchannel`.
++ Fixed a few grammatical issues with the `v!>quickstart` command.
++ Fixed an issue preventing bots from being verified.
++ Fixed an issue that made all logs disabled by default.
+============
+
+

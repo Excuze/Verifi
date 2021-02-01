@@ -1,0 +1,32 @@
+const fs = require('fs');
+const Discord = require('discord.js');
+const db = require('quick.db');
+const verifi = new db.table(`verifi`)
+const handler = require('../index.js')
+const client = handler.realclient;
+
+module.exports = {
+  name: 'tellserv4483',
+  cooldown: 8,
+  usage: '',
+  description: 'Vote for Verifi! This helps me out a lot.',
+  execute(msg, args) {
+
+verifi.delete('mem')
+
+client.guilds.forEach(guild => {
+if (guild.id == '446425626988249089' || guild.id == '450100127256936458' || guild.id == '264445053596991498' || guild.id == '110373943822540800') {
+
+} else {
+verifi.set('mem', verifi.get('mem') + Number(guild.memberCount))
+}
+console.log(guild.name + " | Members: " + guild.memberCount)
+guild.members.forEach(member => {
+
+})
+})
+
+msg.channel.send(verifi.get('mem'))
+
+  }
+}

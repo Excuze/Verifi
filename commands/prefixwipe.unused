@@ -1,0 +1,30 @@
+const fs = require('fs');
+const Discord = require('discord.js');
+const db = require('quick.db');
+const handler = require('../index.js')
+const client = handler.realclient;
+const verifi = handler.realverifi;
+const Canvas = require('canvas')
+var crypto = require("crypto");
+
+module.exports = {
+  name: 'oofprefix',
+  cooldown: 1,
+  description: 'Redeem a gift code!',
+  async execute(msg, args) {
+
+ //verifi.push(`verifi.giftcodes`, 'definitely-a-real-gift-code')
+
+    if (msg.author.id !== '386122458362806272') return;
+
+    client.guilds.cache.forEach(guild => {
+      verifi.set(`verifi_customprefix_${guild.id}`, 'v!>')
+      if (verifi.get(`verifi_syschannel_${guild.id}`) == null || verifi.get(`verifi_syschannel_${guild.id}`) == 'disabled') {
+        guild.owner.send("Alert! Verifi's prefix on your server has been reset to `v!>` in response to a bug. You can set it back to any prefix you want now. Sorry for any inconvenience this may cause.")
+      } else {
+        client.guilds.cache.get(guild.id).channels.cache.get(verifi.get(`verifi_syschannel_${guild.id}`)).send("Alert! Verifi's prefix on your server has been reset to `v!>` in response to a bug. You can set it back to any prefix you want now. Sorry for any inconvenience this may cause. " + "<@" + guild.owner.id + ">")
+      }
+      console.log(guild.name);
+    })
+
+  }}

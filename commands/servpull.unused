@@ -1,0 +1,18 @@
+const fs = require('fs');
+const Discord = require('discord.js');
+const db = require('quick.db');
+const handler = require('../indexoptimizenoncoopycompliant.js')
+const client = handler.realclient;
+const verifi = handler.realverifi;
+
+module.exports = {
+  name: 'servpull',
+  cooldown: 1,
+  description: 'Pull a list of servers and their IDs and their custom messages.',
+  execute(msg, args) {
+
+	client.guilds.forEach(guild => { console.log("Name: " + guild.id)}) //+ " ID: " + guild.id + " Custom Message: " + verifi.get(`verifi_message_${guild.id})) } )
+
+
+  }
+}

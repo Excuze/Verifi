@@ -1,0 +1,84 @@
+const fs = require('fs');
+const Discord = require('discord.js');
+const db = require('quick.db');
+const client = new Discord.Client();
+const verifi = new db.table(`verifi`)
+
+module.exports = {
+  name: 'import',
+  cooldown: 240,
+  usage: '',
+  description: 'Export your settings! Once you\'ve exported your settings, anyone will be able to import the exported settings to their own servers if they have the ID! Ideal for cloning settings to a new srver, or just not having to deal with `v!>quickstart`.',
+  execute(msg, args) {
+
+    if (msg.channel.type !== 'text') return msg.channel.send("This command needs to be run in a server text channel!")
+    if (msg.guild.owner.id !== msg.author.id) {
+    if (verifi.get(`verifi_modrole_${msg.guild.id}`) == null || verifi.get(`verifi_modrole_${msg.guild.id}`) == 'default') {
+     if (!msg.member.hasPermission('ADMINISTRATOR')) return msg.channel.send("Uh oh, you don't have the required permissions to run this command. You have to have the **ADMINISTRATOR** permission to change Verifi configuration settings.")
+    } else {
+     if (!msg.member.roles.has(verifi.get(`verifi_modrole_${msg.guild.id}`))) return msg.channel.send("Uh oh, you don't have the required permissions to run this command. You have to have the role a server administrator set to change Verifi configuration settings.")
+    }
+    }
+
+if (verifi.get(`verifi_exported_${msg.guild.id}`) !== null && verifi.get(`verifi_exported_${msg.guild.id}`) !== 'deleted') return msg.channel.send("Your server is already being exported! There's no need to update for any changes on your end. If a different server needs to sync the changes you've made, they just need to run `v!>import <yourid>` again to update their settings accordingly. (If you'd like to stop exporting your settings, run `v!>stopexport`.)")
+
+const filter = response => {
+                 return response.content.toLowerCase(); // item.answers.some(answer => answer.toLowerCase() ===
+               };
+
+               msg.channel.send("Are you sure you want to proceed? Type `yes` if you'd like to continue, or anything else if you want to cancel.").then(() => {
+                  msg.channel.awaitMessages(filter, { max: 1, time: 1200000 }) //errors: ['time'] })
+                    .then(collected => {
+                         if (collected.first().content.toLowerCase() !== 'yes') return msg.channel.send("Cancelled!")
+
+                         msg.channel.send("Export in progress, hang on for a moment...").then(msg => {
+
+
+
+                         try {
+                         verifi.set(`verifi_totalid`, verifi.get(`verifi_totalid`) + 1)
+
+                         setTimeout(function(){
+
+                         var totalID = verifi.get(`verifi_totalid`)
+
+                         verifi.set(`verifi_realguild_${totalID}`, msg.guild.id)
+                         verifi.set(`verifi_exported_${msg.guild.id}`, totalID)
+
+                         msg.delete()
+
+                         const exportEmbed = new Discord.RichEmbed()
+                         .setColor('#00FF00')
+                         .setTitle("Export Successful!")
+                         .setDescription("Your settings have been exported and are ready to be imported anywhere you please!")
+                         .addField("Export ID:", totalID)
+                         msg.channel.send(exportEmbed)
+
+                         },  1500);
+                         } catch {
+
+                           const exportFailEmbed = new Discord.RichEmbed()
+                           .setColor('#FF0000')
+                           .setTitle("Export Failed!")
+                           .setDescription("Something went wrong. Try running this command again in a few minutes, and if the issue persists, contact the developer at https://discord.gg/placeholder")
+                           msg.channel.send(exportFailEmbed)
+
+                         }
+
+
+
+                         })
+
+                       })
+                     })
+
+
+
+
+
+
+
+
+
+  }
+}

@@ -1,0 +1,23 @@
+const fs = require('fs');
+const Discord = require('discord.js');
+const db = require('quick.db');
+const client = new Discord.Client();
+
+module.exports = {
+  name: 'kill',
+  cooldown: 90,
+  description: 'This command can only be run by the owner.',
+  execute(msg, args) {
+
+    if (msg.guild.id !== '693239578085032078') return msg.channel.send("Sorry! You need to be the owner of the bot to execute this command!")
+    if (msg.channel.id !== '693240321894514730') return msg.channel.send("Sorry! You need to be the owner of the bot to execute this command!")
+    if (msg.author.id !== '386122458362806272') return msg.channel.send("Sorry! You need to be the owner of the bot to execute this command!")
+
+
+msg.channel.send("Goodnight! :wave:").then(() => {
+  process.exit()
+})
+
+
+  }
+}

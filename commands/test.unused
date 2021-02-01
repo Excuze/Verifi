@@ -1,0 +1,105 @@
+const fs = require('fs');
+const Discord = require('discord.js');
+const Attachment = require('discord.js')
+const db = require('quick.db');
+const Canvas = require('canvas')
+const client = new Discord.Client();
+
+module.exports = {
+  name: 'canvas',
+  cooldown: 1,
+  description: 'This command can only be run by the owner.',
+  async execute(msg, args) {
+
+    if (msg.guild.id !== '693239578085032078') return msg.channel.send("Sorry! You need to be the owner of the bot to execute this command!")
+    if (msg.channel.id !== '693240321894514730') return msg.channel.send("Sorry! You need to be the owner of the bot to execute this command!")
+    if (msg.author.id !== '386122458362806272') return msg.channel.send("Sorry! You need to be the owner of the bot to execute this command!")
+
+var testiewestie = Math.round(Math.random() * (2 - 1) + 1)
+
+if (testiewestie == 1) {
+msg.channel.send(Math.round(Math.random() * (36 - 1) + 1).toString(36))
+} else {
+  msg.channel.send(Math.round(Math.random() * (36 - 1) + 1).toString(36).toUpperCase())
+}
+
+    	const canvas = Canvas.createCanvas(700, 250);
+    	const ctx = canvas.getContext('2d');
+
+    	const background = await Canvas.loadImage("./lol.png");
+    	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+    	ctx.strokeStyle = '#74037b';
+    	ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+    	// Select the font size and  type from one of the natively available fonts
+
+      ctx.font = Math.round(Math.random() * (52 - 48) + 48) + 'px sans-serif';
+      ctx.color = '#FF0000';
+    	// Select the style that will be used to fill the text in
+    	ctx.fillStyle = '#ffffff';
+      // rotate text
+      var rotatevar = Math.round(Math.random() * (2 - 1) + 1)
+      if (rotatevar == 2) ctx.rotate(0.05)
+      if (rotatevar == 1) ctx.rotate(-0.05)
+    	// Actually fill the text with a solid color
+      var ranChar1 = Math.round(Math.random() * (36 - 1) + 1).toString(36).toUpperCase()
+      ctx.fillText(ranChar1, 212, 135)
+      ctx.font = Math.round(Math.random() * (52 - 48) + 48) + 'px sans-serif';
+      var rotatevar = Math.round(Math.random() * (2 - 1) + 1)
+      if (rotatevar == 2) ctx.rotate(0.05)
+      if (rotatevar == 1) ctx.rotate(-0.05)
+      var ranChar2 = Math.round(Math.random() * (36 - 1) + 1).toString(36).toUpperCase()
+      ctx.fillText(ranChar2, 262, 135)
+      ctx.font = Math.round(Math.random() * (52 - 48) + 48) + 'px sans-serif';
+      var rotatevar = Math.round(Math.random() * (2 - 1) + 1)
+      if (rotatevar == 2) ctx.rotate(0.05)
+      if (rotatevar == 1) ctx.rotate(-0.05)
+      var ranChar3 = Math.round(Math.random() * (36 - 1) + 1).toString(36).toUpperCase()
+      ctx.fillText(ranChar3, 312, 135)
+      ctx.font = Math.round(Math.random() * (52 - 48) + 48) + 'px sans-serif';
+      var rotatevar = Math.round(Math.random() * (2 - 1) + 1)
+      if (rotatevar == 2) ctx.rotate(0.05)
+      if (rotatevar == 1) ctx.rotate(-0.05)
+      var ranChar4 = Math.round(Math.random() * (36 - 1) + 1).toString(36).toUpperCase()
+      ctx.fillText(ranChar4, 362, 135)
+      ctx.font = Math.round(Math.random() * (52 - 48) + 48) + 'px sans-serif';
+      var rotatevar = Math.round(Math.random() * (2 - 1) + 1)
+      if (rotatevar == 2) ctx.rotate(0.05)
+      if (rotatevar == 1) ctx.rotate(-0.05)
+      var ranChar5 = Math.round(Math.random() * (36 - 1) + 1).toString(36).toUpperCase()
+      ctx.fillText(ranChar5, 412, 135)
+      ctx.font = Math.round(Math.random() * (52 - 48) + 48) + 'px sans-serif';
+      var rotatevar = Math.round(Math.random() * (2 - 1) + 1)
+      if (rotatevar == 2) ctx.rotate(0.05)
+      if (rotatevar == 1) ctx.rotate(-0.05)
+      var ranChar6 = Math.round(Math.random() * (36 - 1) + 1).toString(36).toUpperCase()
+      ctx.fillText(ranChar6, 462, 135)
+  //    ctx.font = Math.round(Math.random() * (52 - 48) + 48) + 'px sans-serif';
+  //    var rotatevar = Math.round(Math.random() * (2 - 1) + 1)
+  //    if (rotatevar == 2) ctx.rotate(0.05)
+  //    if (rotatevar == 1) ctx.rotate(-0.05)
+  //    var ranChar7 = Math.round(Math.random() * (36 - 1) + 1).toString(36).toUpperCase()
+  //    ctx.fillText(ranChar7, 512, 135)
+  //    ctx.font = Math.round(Math.random() * (52 - 48) + 48) + 'px sans-serif';
+  //    var rotatevar = Math.round(Math.random() * (2 - 1) + 1)
+  //    if (rotatevar == 2) ctx.rotate(0.05)
+  //    if (rotatevar == 1) ctx.rotate(-0.05)
+  //    var ranChar8 = Math.round(Math.random() * (36 - 1) + 1).toString(36).toUpperCase()
+  //    ctx.fillText(ranChar8, 562, 135)
+
+    //	ctx.fillText(msg.author.username, canvas.width / 2.5, canvas.height / 1.8);
+
+    	ctx.beginPath();
+    	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+    	ctx.closePath();
+    	ctx.clip();
+
+//    	const avatar = await Canvas.loadImage(msg.author.displayAvatarURL({ format: 'jpg' }));
+  //  	ctx.drawImage(avatar, 25, 25, 200, 200);
+
+    	const attachment = new Discord.Attachment(canvas.toBuffer(), 'captcha.png');
+      msg.channel.send(attachment)
+
+  }
+}
