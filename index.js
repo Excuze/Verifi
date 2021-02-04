@@ -12,7 +12,7 @@ const verifi = new db.table(`verifi`)
 module.exports.realverifi = verifi;
 const Canvas = require('canvas')
 const DBL = require('dblapi.js')
-const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NzUyMzg1Njk3MzQ5NjQzMCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTkwNDU3MTE1fQ.kEiYvryebQfYlXnbQnmpblDsO-pFhOVhl2wdtvxNf0Q', client);
+const dbl = new DBL('dbl-token', client);
 
 
 
